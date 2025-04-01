@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>apple-belike</title>
+<style>
+    body{   background-color:rgb(245,245,247) ;}
+    #导航{  background-color: rgb(26,26,26);
+            height: 44px;
+            width: 100%;
+            display: block;
+            position:fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 5;
+            }
+    #导航内容{  margin: 0 auto;
+                box-sizing: border-box;
+                width: 1024px;
+                padding-top: 0;
+                padding-bottom: 0;
+             }
+    #列表{
+        list-style: none;
+        height:44px;
+        width: auto;
+        display: flex;
+        font-size: 11px;
+        justify-content: space-between;
+        margin: 0 -8px;
+        padding: 0;
+        text-decoration: none;
+    }
+    .导航元素{   color:white;
+                display: block;
+                height: 44px;
+                padding-top: 11px;}
+    a{text-decoration: none;}
+    .图片背景{   top: 80px;
+                padding-left: 30px;
+                padding-right: 30px;
+                position:relative;
+                margin-left: 160px;
+                margin-right: 160px;
+                background-color: white;
+                height: 738px;
+                overflow: hidden;
+                border-radius: 2cap;
+                z-index: 2;
+                }
+    .图1{    display: block;
+            top: 0;
+            margin-left: auto;
+            margin-right: auto;
+            z-index: -1;
+            justify-content: center;
+            align-items: center;
+        
+        }
+    .text{  text-align: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+    .详情{  display: flex;
+            position:relative;
+            padding: 0;
+            margin-left: auto;
+            margin-right:auto;
+            margin-top: 0px;    
+            width: 200px;
+            text-decoration: none;
+            list-style: none;
+            justify-content: space-between;
+            z-index: 4;}   
+    .购买字体{   border-radius: 980px;
+                background-color: #0071e3;
+                font-size: 17px;
+                color: white;
+                padding: 8px 16px;
+                font-weight: 400;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                a:link{color: white;}}
+    .了解字体{   a:link{color: #0071e3;}
+                a:visited{color: #0071e3;}
+                a:hover{text-decoration: underline;}} 
+    .解释说明{  border-top-style: solid;
+                border-color: grey;
+                position: relative;
+                margin-top: 100px;
+                text-align: center;
+                width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+                font-size: 12px;}
+ 
+        
+
+        
+</style>
+</head>
+<body>
+    <nav id="导航" lang="zh-cn">
+    <div id="导航内容">
+    <ul id="列表">
+        <li><a href="//www.apple.com.cn/">
+            <span class="导航元素">主页</span>
+        </a></li>
+        <li><a href="https://www.apple.com.cn/cn-edu/store">
+            <span class="导航元素">商店</span>
+        </a></li>
+        <li><a href="https://www.apple.com.cn/mac/">
+            <span class="导航元素">Mac</span>
+        </a></li>
+        <li><a href="https://www.apple.com.cn/iphone/">
+            <span class="导航元素">iPhone</span>
+        </a></li>
+        <li><a href="https://www.apple.com.cn/ipad/">
+            <span class="导航元素">iPad</span>
+        </a></li>
+        <li><a href="https://www.apple.com.cn/watch/">
+            <span class="导航元素">Watch</span>
+        </a></li>
+        <li><a href="https://www.apple.com.cn/apple-vision-pro/"> 
+            <span class="导航元素">Vision</span>
+        </a></li>
+        <li><a href="https://www.apple.com.cn/airpods/"> 
+            <span class="导航元素">Airpods</span>
+        </a></li>
+        <li><a href="https://www.apple.com.cn/apple-home/">
+            <span class="导航元素">家居</span>
+        </a></li>
+        <li><a href="https://www.apple.com.cn/services/">
+            <span class="导航元素">娱乐</span>
+        </a></li>
+        <li><a href="https://www.apple.com.cn/cn-edu/shop/accessories/all"> 
+            <span class="导航元素">配件</span>
+        </a></li>
+        <li><a href="https://support.apple.com/zh-cn">
+            <span class="导航元素">技术支持</span>
+        </a></li>
+        <li><a href="#shop">
+            <span class="导航元素">搜索</span>
+        </a></li>
+        <li><a href="#shop">
+            <span class="导航元素">工具箱</span>
+        </a></li>
+    </ul>
+    </div>
+    </nav>
+<div class="图片背景">
+    <h1 class="text" style="font-size: 120px;font-weight: 510;margin-top: 300px;line-height: 0;">AirPods</h1>
+    <p class="text" style="font-size: 21px;font-weight:700;line-height: 0;">第三代</p>
+    <p class="text" style="font-size: 21px;font-weight:700;">RMB 9.9 起</p>
+    <img class="图1" src="airpods_3rd_gen__dhy5bknhvtqq_large.jpg" style="position: absolute;">
+</div>
+    <ul class="详情">
+        <li><a href="https://www.apple.com.cn/cn-edu/shop/product/MPNY3CH/A">
+            <span class="购买字体">购买</span>
+            </a>
+        </li>
+        <li>
+            <span class="了解字体"><a href="https://www.apple.com.cn/airpods-3rd-generation/">进一步了解></a>
+            </span>
+        </li>   
+    </ul>
+<div class="图片背景">
+    <h1 class="text" style="font-size: 210px;font-weight: 510;margin-top: 300px;line-height: 0;">AirPods Max</h1>
+        <p class="text" style="font-size: 21px;font-weight:700;">RMB 9.9</p>
+        <img src="airpods_max__f265q4g4ddym_large.png" class="图1" style="position: relative;top: -450px;z-index: 1;">
+</div>
+<ul class="详情">
+    <li><a href="https://www.apple.com.cn/cn-edu/shop/buy-airpods/airpods-max">
+        <span class="购买字体">购买</span>
+        </a>
+    </li>
+    <li>
+        <span class="了解字体"><a href="https://www.apple.com.cn/airpods-max/">进一步了解></a>
+        </span>
+    </li>   
+</ul>
+<div class="图片背景">
+    <h1 class="text" style="font-size: 120px;font-weight: 510;margin-top: 100px;line-height: 0;">Apple Vision Pro</h1>
+    <p class="text" style="font-size: 21px;font-weight:700;">RMB 9.9 起</p>
+    <img class="图1"  src="store-card-40-vision-pro-202401.jpg" style="position:relative;top: -400px;">
+</div>
+<ul class="详情">
+    <li><a href="https://www.apple.com.cn/shop/buy-vision">
+        <span class="购买字体">购买</span>
+        </a>
+    </li>
+    <li>
+        <span class="了解字体"><a href="https://www.apple.com.cn/apple-vision-pro/">进一步了解></a>
+        </span>
+    </li>   
+</ul>
+<div class="解释说明">
+    <p>本网站由 XYF手动制作，仅供学习参考，无任何商业用途，一切版权归apple公司所有</p>
+</div>
+</body>
+</html>
