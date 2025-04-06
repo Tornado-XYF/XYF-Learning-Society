@@ -1,0 +1,15 @@
+# ninja log v6
+2	110	7653688914255896	CMakeFiles/HW_selecsort.dir/main.c.obj	a679e9e2bdb64746
+111	269	7653688915350490	HW_selecsort.exe	5ae4e060afbc3368
+4	206	7653689390646453	CMakeFiles/HW_selecsort.dir/main.c.obj	a679e9e2bdb64746
+207	378	7653689392668595	HW_selecsort.exe	5ae4e060afbc3368
+7	1363	7653712080998917	CMakeFiles/HW_selecsort.dir/main.c.obj	a679e9e2bdb64746
+1363	2466	7653712094555980	HW_selecsort.exe	5ae4e060afbc3368
+4	502	7653713119865046	CMakeFiles/HW_selecsort.dir/main.c.obj	a679e9e2bdb64746
+503	970	7653713124855085	HW_selecsort.exe	5ae4e060afbc3368
+7	193	7653714608586340	CMakeFiles/HW_selecsort.dir/main.c.obj	a679e9e2bdb64746
+193	370	7653714610432784	HW_selecsort.exe	5ae4e060afbc3368
+4	239	7653716028993241	CMakeFiles/HW_selecsort.dir/main.c.obj	a679e9e2bdb64746
+240	475	7653716031365895	HW_selecsort.exe	5ae4e060afbc3368
+5	303	7653719397458922	CMakeFiles/HW_selecsort.dir/main.c.obj	a679e9e2bdb64746
+304	524	7653719400447007	HW_selecsort.exe	5ae4e060afbc3368
