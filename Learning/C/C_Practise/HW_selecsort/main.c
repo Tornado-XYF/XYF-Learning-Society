@@ -11,18 +11,14 @@ void bubble_sort(int arr[], int n) {
                 arr[j + 1] = temp;
             }
         }
-    }
-
-int main() {
-    int n;
-    scanf("%d",&n);
-    int arr[n];
-    for(int x = 0;x<n;x++) {
-        scanf("%d",arr[x]);
-    }
-    bubble_sort(arr, n);
     for (int i = 0; i < n; i++) {
         printf("%d ", arr[i]);
     }
+    }
+
+int main() {
+    int n = 5;
+    int arr[5] ={5,10,2,1,0};
+    bubble_sort(arr, n);
     return 0;
 }

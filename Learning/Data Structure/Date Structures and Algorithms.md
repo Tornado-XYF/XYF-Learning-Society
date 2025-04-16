@@ -109,7 +109,8 @@ int i, j, temp;
 for (i = 1; i < n; i++)
 {
 if (k[i] < k[i - 1])
-{temp = k[i];
+{
+temp = k[i]; 
 for (j = i - 1; j >= 0 && k[j] > temp; j--)
 {
 k[j + 1] = k[j];
@@ -118,6 +119,7 @@ k[j + 1] = temp;
 }
 }
 }
+
 int main() {
 int i, a[10] = { 5,2,6,0,3,9,1,7,4,8 };
 InsertSort(a, 10); 
@@ -173,3 +175,44 @@ return 0;
 堆排序（Heapsort）是指利用堆这种数据结构所设计的一种排序算法。堆积是一个近似完全二叉树的结构，并同时满足堆积的性质：即子结点的键值或索引总是小于（或者大于）它的父节点。
 
 例：
+
+## 查找
+
+### 折半查找
+
+折半查找是一种效率较高的查找方法。但是，折半查找要求线性表必须采用顺序存储结构，而且表中元素按关键字有序排列。
+
+例：
+
+```.
+#include <stdio.h>
+int BinarySearch(int k[], int n, int key)
+{
+int low, high, mid;
+low = 0;
+high = n - 1;
+while (low <= high)
+{
+mid = (low + high) / 2;
+if (key < k[mid])
+{
+high = mid - 1;
+}
+else if (key > k[mid])
+{
+low = mid + 1;
+}
+else
+{
+return mid;  
+}
+}
+}
+
+int main() {
+int i, a[10] = { 5,2,6,0,3,9,1,7,4,8 };
+int key = 3;
+printf("%d", BinarySearch(a, 10, key));
+return 0; 
+}
+```
