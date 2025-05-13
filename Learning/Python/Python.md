@@ -2428,7 +2428,7 @@ e
 例如：
 
 ```python
-len(d)
+len(d) #获取字典键值对数量
 ```
 
 输出：
@@ -2596,3 +2596,1244 @@ d
 ```python
 {1:6,3:6,5:6} #返回值
 ```
+
+## 集合
+
+集合是一种无序、不重复的数据结构，它的元素可以是任意类型的对象。
+
+### 创建可变（不可变）集合
+
+集合分为可变和不可变集合。
+创建可变集合的方法有以下几种：
+
+- 使用花括号 `{}` 创建集合。
+
+  ```python
+  a = {1,2,3,4,5}
+  ```
+
+- 集合推导式
+
+  ```python
+  b = {x for x in "FishC"}
+  ```
+
+  输出：
+
+  ```python
+  {'F', 'i', 's', 'h', 'C'} #返回值
+  ```
+
+- 使用 `set()` 函数创建集合。
+
+  ```python
+  d = set("FishC")
+  ```
+
+  输出：
+
+  ```python
+  {'F', 'i','s', 'h', 'C'} #返回值
+  ```
+
+而不可变几何则是使用 `frozenset()` 函数创建集合。
+
+例如：
+
+```python
+a = frozenset("FishC")
+a
+```
+
+输出：
+
+```python
+frozenset({'F', 'i','s', 'h', 'C'}) #返回值
+```
+
+### 访问集合
+
+由于集合是无序的，所以不能通过索引访问集合中的元素。
+
+例如：
+
+```python
+a = {1,2,3,4,5}
+a[0] #报错
+```
+
+输出：
+
+```python
+#这里会报错
+```
+
+运用循环遍历集合中的元素。
+
+例如：
+
+```python
+for x in a:
+    print(x)
+```
+
+输出：
+
+```python
+1 #返回值
+2 #返回值
+3 #返回值
+4 #返回值
+5 #返回值
+```
+
+### 利用集合唯一性去重
+
+例如：
+
+```python
+a = {1,2,3,4,5,1,2,3,4,5} #集合中的元素是唯一的
+set(a)
+```
+
+输出：
+
+```python
+{1,2,3,4,5} #返回值
+```
+
+### （可变）集合方法
+
+#### 检测集合之间毫不相干`isdisjoint()`
+
+例如：
+
+```python
+a = set("Python")
+b = set("FishC")
+a.isdisjoint(set(b)) #检测集合之间是否毫不相干
+```
+
+输出：
+
+```python
+False #返回值
+```
+
+#### 检测集合是否是另一个集合的子集`issubset()`
+
+例如：
+
+```python
+a = set("Fish")
+b = set("FishC.py")
+a.issubset(b) #检测集合a是否是集合b的子集
+```
+
+输出：
+
+```python
+True #返回值
+```
+
+#### 检测集合是否是另一个集合的超集`issuperset()`
+
+例如：
+
+```python
+a = set("Fish")
+b = set("FishC.py")
+a.issuperset(b) #检测集合a是否是集合b的超集
+```
+
+输出：
+
+```python
+False #返回值
+```
+
+#### 集合的并集`union()`
+
+例如：
+
+```python
+a = set("apple")
+b = set("FishC.py")
+a.union(b) #集合的并集
+```
+
+输出：
+
+```python
+{'a', 'e', 'i', 'l', 'p', 's', 'h', 'F', 'C', 'y', '.'} #返回值
+```
+
+#### 集合的交集`intersection()`
+
+例如：
+
+```python
+a = set("apple")
+b = set("FishC.py")
+a.intersection(b) #集合的交集
+```
+
+输出：
+
+```python
+{'p'} #返回值
+```
+
+#### 集合的差集`difference()`
+
+例如：
+
+```python
+a = set("Fishs")
+b = set("FishC.py")
+a.difference(b) #集合的差集
+```
+
+输出：
+
+```python
+{'s'} #返回值
+```
+
+#### 集合的对称差集`symmetric_difference()`
+
+例如：
+
+```python
+a = set("Fishs")
+b = set("FishC.py")
+a.symmetric_difference(b) #集合的对称差集
+```
+
+输出：
+
+```python
+{'s', 'C', 'y', '.','p'} #返回值
+```
+
+#### 集合检测运算
+
+检测符号：
+
+- `>`：检测是否是真超集。
+- `<`：检测是否是真子集。
+- `>=`：检测是否是超集。
+- `<=`：检测是否是子集。
+- `==`：检测是否相等。
+- `!=`：检测是否不相等。
+
+例如：
+
+```python
+a = set("Fishs")
+b = set("FishC.py")
+a > b #检测集合a是否是集合b的真超集
+a < b #检测集合a是否是集合b的真子集
+a >= b #检测集合a是否是集合b的超集
+a <= b #检测集合a是否是集合b的子集
+a == b #检测集合a是否等于集合b
+a != b #检测集合a是否不等于集合b
+```
+
+输出：
+
+```python
+False #返回值
+False #返回值
+False #返回值
+False #返回值
+True #返回值
+False #返回值
+```
+
+运算符号：
+
+- `&`：交集。
+- `|`：并集。
+- `-`：差集。
+- `^`：对称差集。
+
+例如：
+
+```python
+a = set("Fishs")
+b = set("FishC.py")
+a & b #集合的交集
+a | b #集合的并集
+a - b #集合的差集
+a ^ b #集合的对称差集
+```
+
+输出：
+
+```python
+{'p'} #返回值
+{'a', 'e', 'i', 'l', 'p','s', 'h', 'F', 'C', 'y', '.'} #返回值
+{'s'} #返回值
+{'s', 'C', 'y', '.'} #返回值
+```
+
+#### 添加元素`update()`
+
+`update()` 方法用于将一个集合中的元素添加到另一个集合中。
+
+例如：
+
+```python
+a = set("Fishs")
+a.update([1,1],"23") #将列表[1,1]和字符串"23"中的添加到集合a中
+a
+```
+
+输出：
+
+```python
+{'s', 'F', 'i', 'h', '1', '3'，'2'} #返回值,体现了集合的唯一性和无序性
+```
+
+##### `intersection_update()`
+
+例如：
+
+```python
+a = set("FishC")
+b = set("Fishes")
+a.intersection_update(b) #集合的交集
+a
+```
+
+输出：
+
+```python
+{'i', 's', 'h', 'F'} #返回值
+```
+
+##### `difference_update()`
+
+例如：
+
+```python
+a = set("FishC")
+b = set("Fishes")
+a.difference_update(b) #集合的差集
+a
+```
+
+输出：
+
+```python
+{'C'} #返回值
+```
+
+##### `symmetric_difference_update()`
+
+例如：
+
+```python
+a = set("FishC")
+b = set("Fishes")
+a.symmetric_difference_update(b) #集合的对称差集
+a
+```
+
+输出：
+
+```python
+{'e','c'}
+```
+
+#### 添加元素`add()`
+
+`add()` 方法用于将一个元素添加到集合中。和 `update()` 方法不同的是，`add()` 方法只能添加一个元素。而且在传入字符串时，会将整个字符串作为一个元素添加到集合中。
+
+例如：
+
+```python
+a = set("FishC")
+a.add("Fish") #将字符串"Fish"添加到集合a中
+a
+a.update("Fish") #将字符串"Fish"中的每个字符添加到集合a中
+a
+```
+
+输出：
+
+```python
+{'C', 'F', 'i', 'h', 'Fish'} #返回值
+{'C', 'F', 'i', 'h', 'F', 'i', 's', 'h'} #返回值
+```
+
+#### 删除元素`remove()`和`discard()`
+
+`remove()` 方法用于删除集合中的指定元素。如果指定的元素不存在，则会抛出 `KeyError` 异常。而 `discard()` 方法用于删除集合中的指定元素。如果指定的元素不存在，则不会抛出异常。
+
+例如：
+
+```python
+a = set("FishC")
+a.remove("x") #删除集合a中的元素"F"
+a
+a.discard("x") #删除集合a中的元素"F"
+a
+```
+
+#### 随机删除元素`pop()`
+
+`pop()` 方法用于随机删除集合中的一个元素，并返回该元素。
+
+例如：
+
+```python
+例如：
+a = set("FishC")
+a.pop() #随机删除集合a中的一个元素
+a
+```
+
+## 哈希`hash(x)`
+
+创建字典和集合都有一个硬性要求，就是字典的键和集合的元素必须可哈希，利用`hash(x)`可以求出x的哈希值
+一般来说，不可变的对象都有哈希值，而可变对象没有哈希值。
+
+## 函数
+
+例如：
+
+```.
+  def myfunc():
+      pass
+```
+
+解释：
+  `def` 用来定义函数，`myfunc`是定义的函数名，冒号`:`之后就是函数体,`pass`经常用来当占位符，没什么实际用处，理解为，做个记号，后期替换pass处，补充功能。括号`()`里面，可以需要传入的参数
+
+例如：
+
+```.
+def myfunc(name,times):
+  for i in range(3):
+            print("I love python")
+myfunc("python",5)
+```
+
+### 返回值
+
+```.
+def div(x,y):
+      if y == 0:
+         return"除数不能为0！"
+      return x/y
+div(3,2)
+```
+
+### 位置参数
+
+```.
+def myfunc(s,vt,o):
+      return"".join((o,vt,s))
+myfunc("Fish","C","Py")
+```
+
+解释：
+`join()`方法用于将序列中的元素以指定的字符连接生成一个新的字符串。
+
+输出
+
+```.
+PyFishC
+```
+
+### 关键字参数
+
+```.
+def myfunc(s,vt,o):
+      return"".join((o,vt,s))
+myfunc(o="Fish",vt="C",s="Py")
+```
+
+输出
+
+```.
+FishCpy
+```
+
+==位置参数一定要在关键字参数之前==
+
+### 默认参数
+
+```.
+def myfunc(s,vt,o="Fish"):
+      return"".join((o,vt,s))
+myfunc("Py","C")
+```
+
+这里的o是默认参数，在调用函数时，如果没有传入o的值，则会使用默认值。
+
+==默认参数一定要在位置参数之后==
+
+输出：
+
+```.
+FishCPy
+```
+
+### `/`和`*`
+
+`/`和`*`是Python 3.8中新增的语法，用于指定函数的参数类型。
+
+`/`表示位置参数，`*`表示关键字参数。
+
+例如：
+
+```.
+def myfunc(a,/,b,c):
+      print(a,b,c)
+abc(a=1,2,3)
+```
+
+输出：
+
+```.
+TypeError: myfunc() got some positional-only arguments passed as keyword arguments: 'a'
+```
+
+解释：
+`/`限制了其左边不能使用关键字参数。但是任意位置可以使用位置参数。
+
+例二：
+
+```.
+def myfunc(a,*b,,c):
+      print(a,b,c)
+abc(1,2,c=3)
+```
+
+输出：
+
+```.
+TypeError: myfunc() got some positional-only arguments passed as keyword arguments: 'a'
+```
+
+解释：
+`*`限制了其右边不能使用位置参数。但是任意位置可以使用关键字参数。
+
+### 收集参数
+
+收集参数是指在函数定义时，使用`*`或`**`来表示收集参数。收集参数的过程是将传入的参数收集到一个元组或字典中。
+
+例如：
+
+```.
+def myfunc(*args):
+      print("有{}个参数".format(len(args)))
+      print(args)
+myfunc(1,2,3,4,5)
+```
+
+输出：
+
+```.
+有5个参数
+(1,2,3,4,5)
+```
+
+### 关键字收集参数
+
+例如：
+
+```.
+def myfunc(*args,a,b): #这里的a，b必须用关键字参数传入
+      print(args,a,b)
+myfunc(1,2,3,4,5,a=6,b=7)
+```
+
+输出：
+
+```.
+(1,2,3,4,5) 6 7
+```
+
+### 字典收集参数
+
+例如：
+
+```.
+def myfunc(**kwargs):
+      print(kwargs)
+myfunc(a=1,b=2,c=3)
+```
+
+输出：
+
+```.
+{'a':1,'b':2,'c':3}
+```
+
+### 收集参数的混合使用
+
+例如：
+
+```.
+def myfunc(a,*args,**kwargs):
+      print(a,args,kwargs)
+myfunc(1,2,3,4,5,a=6,b=7)
+```
+
+输出：
+
+```.
+1 (2,3,4,5) {'a':6,'b':7}
+```
+
+### 收集参数的解包
+
+例如：
+
+```.
+args = (1,2,3,4) #元组
+def myfunc(a,b,c,d):
+      print(a,b,c,d)
+myfunc(*args) #将元组解包，然后把解出来的四个值分别传入到函数中
+```
+
+输出：
+
+```.
+1 2 3 4
+```
+
+例如：
+
+```.
+kwargs = {'a':1,'b':2,'c':3,'d':4} #字典
+def myfunc(a,b,c,d):
+      print(a,b,c,d)
+myfunc(**kwargs) #将字典解包，然后把解出来的四个值分别传入到函数中
+```
+
+输出：
+
+```.
+1 2 3 4
+```
+
+### 作用域
+
+作用域是指变量的作用范围。
+
+### `global`
+
+`global` 关键字用于在函数内部声明一个全局变量,并且可以改变函数外部的全局变量的值。
+
+### 嵌套函数
+
+函数里面用函数。
+
+### `nonlocal`
+
+`nonlocal` 关键字用于在函数内部声明一个非局部变量,并且可以改变函数外部的非局部变量的值。
+
+### LEGB
+
+LEGB 是 Python 中用于查找变量的规则。
+
+- L（Local）：局部作用域，函数内部的作用域。
+- E（Enclosing）：闭包函数外的函数中。
+- G（Global）：全局作用域，模块级别的作用域。
+- B（Built-in）：内置作用域，Python 内置的作用域。
+
+### 闭包
+
+闭包是指一个函数内部定义的函数，这个内部函数可以访问外部函数的变量。
+
+例如：
+
+```.
+def outer():
+      x = 10 #外部函数的变量
+      def inner():
+            print(x) #内部函数可以访问外部函数的变量
+      return inner
+f = outer() #调用外部函数，返回内部函数,c此时`f`就相当于是`inner`
+f() #调用内部函数
+```
+
+输出：
+
+```.
+10
+```
+
+==利用内部函数可以访问外部函数的变量，实现函数的记忆功能==
+
+例如：
+
+```.
+def outer():
+      x = 0 #外部函数的变量
+      def inner(x1):
+            nonlocal x #声明非局部变量，可以改变函数外部的非局部变量的值
+            x += 1 #内部函数可以访问外部函数的变量
+            print(x) #内部函数可以访问外部函数的变量
+      return inner
+f = outer() #调用外部函数，返回内部函数,c此时`f`就相当于是`inner`
+f(2) #调用内部函数
+```
+
+输出：
+
+```.
+1
+```
+
+紧接着：
+
+```.
+f(3) #调用内部函数，此时外部函数的x已经改变了
+```
+
+输出：
+
+```.
+2
+```
+
+### 装饰器
+
+装饰器是一种特殊的函数，它可以用来修改其他函数的行为。其优势在于可以在不修改原函数的情况下，增加新的功能。
+
+例如：
+
+```.
+def outer(func): #装饰器
+      def inner(): #内部函数
+            print("装饰器") #装饰器的功能
+            func() #调用被装饰的函数
+      return inner #返回内部函数
+@outer #装饰器，相当于myfunc = outer(myfunc)
+def myfunc(): #被装饰的函数
+      print("函数") #被装饰的函数的功能
+myfunc() #调用被装饰的函数
+```
+
+输出：
+
+```.
+装饰器
+函数
+```
+
+#### 多个装饰器的使用
+
+例如：
+
+```.
+def add(func):
+      der inner():
+            x = func() #调用被装饰的函数
+            return x + 1 #返回被装饰的函数的返回值
+      return inner #返回内部函数
+def cube(func):
+      def inner():
+            x = func() #调用被装饰的函数
+            return x*x*x #返回被装饰的函数的返回值
+      return inner #返回内部函数
+def square(func):
+      def inner():
+            x = func() #调用被装饰的函数
+            return x*x #返回被装饰的函数的返回值
+      return inner #返回内部函数
+@add #装饰器，相当于myfunc = add(myfunc)
+@cube #装饰器，相当于myfunc = cube(myfunc)
+@square #装饰器，相当于myfunc = square(myfunc)
+def myfunc(): #被装饰的函数
+      return 2 #被装饰的函数的功能
+myfunc() #调用被装饰的函数
+print(myfunc()) #调用被装饰的函数
+```
+
+输出：
+
+```.
+65
+```
+
+解释：`@square`装饰器先装饰`myfunc`，然后`@cube`装饰器再装饰`myfunc`，最后`@add`装饰器再装饰`myfunc`。
+
+#### 给装饰器传入参数
+
+例如：
+
+```.
+import time
+def logger(msg):
+   def time_master(func):
+      def call_func():
+         start = time.time()
+         func()
+         stop = time.time()
+         print(f"[{msg}]一共消费了{(stop-start):.2f}")
+      return call_func
+   return time_master
+@logger(msg="A") #装饰器，相当于funA = logger(msg="A")(funA)
+def funA():
+   time.sleep(1)
+   print("正在调用funA...")
+@logger(msg="B") #装饰器，相当于funB = logger(msg="B")(funB)
+def funB():
+   time.sleep(2)
+   print("正在调用funB...")
+funA() #调用被装饰的函数
+funB() #调用被装饰的函数
+```
+
+输出：
+
+```.
+正在调用funA...
+[A]一共消费了1.00
+正在调用funB...
+[B]一共消费了2.00
+```
+
+解释：`@logger(msg="A")`装饰器先装饰`funA`，然后`@logger(msg="B")`装饰器再装饰`funB`。
+
+### lambda表达式
+
+lambda表达式是一种匿名函数，它可以用来创建一个函数对象。
+语法：
+
+```.
+lambda 参数列表: 表达式
+```
+
+例如：
+
+```.
+def squareX(x):
+   return x*x
+```
+
+可以写成：
+
+```.
+squareX = lambda x: x*x
+```
+
+放到列表里面：
+
+```.
+y = [lambda x: x*x,2,3]
+y[0](3) #调用列表中的第一个元素，即函数对象，然后传入参数3
+y[0](2) #调用列表中的第二个元素，即2
+```
+
+输出：
+
+```.
+9
+4
+```
+
+==lambda是一个表达式，可以实现一些简单的功能，但是不能实现复杂的功能，所以可以放到函数里面做参数，可以放在列表里面做元素等等等==
+
+### 生成器
+
+我们可以通过闭包，来实现函数的记忆功能，但是这样的话，过多的全局变量，会导致代码的可读性很差，所以我们可以使用生成器来实现函数的记忆功能。
+
+生成器是一种特殊的迭代器，特点是可以在迭代的过程中不断的==产生==值。（即每次调用时只会提供一个数据，并且可以记住当时的状态）
+
+==生成器支持迭代器协议，即实现了`__iter__`和`__next__`方法==
+
+例如：
+
+```.
+def counter():
+   i = 0
+   while i<=5 :
+      yield i #yield是一个关键字，用来产生一个值，并且可以记住当时的状态
+      i += 1
+for i in counter(): #for循环会自动调用next方法，直到抛出StopIteration异常
+   print(i) #打印每次产生的值
+```
+
+输出：
+
+```.
+0
+1
+2
+3
+4
+5
+```
+
+解释：`yield`是一个关键字，用来产生一个值，并且可以记住当时的状态。
+
+==生成器中，使用下角标来访问生成器中的值是会报错的，这也说明，生成器是产生值，而不是保存值==
+例如：
+
+```.
+def counter():
+   i = 0
+   while i<=5 :
+      yield i #yield是一个关键字，用来产生一个值，并且可以记住当时的状态
+      i += 1
+c = counter() #创建一个生成器对象
+c[0] #访问生成器中的第一个值，会报错
+next(c) #访问生成器中的第一个值
+```
+
+输出：
+
+```.
+TypeError: 'generator' object is not subscriptable
+0
+```
+
+==生成器可以使用`next`方法来访问生成器中的值==
+
+### 生成器表达式
+
+生成器表达式是一种特殊的生成器，它可以用来创建一个生成器对象。
+
+例如：
+
+```.
+g = (i for i in range(10)) #创建一个生成器对象，生成器表达式
+for i in g: #for循环会自动调用next方法，直到抛出StopIteration异常
+   print(i) #打印每次产生的值
+```
+
+输出：
+
+```.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+```
+
+解释：`(i for i in range(10))`是一个生成器表达式，它会创建一个生成器对象，生成器表达式可以用来创建一个生成器对象。
+==每次只会生成一个值，并且可以记住当时的状态，不像列表推导式（一次生成所有值并保存到一个列表当中）==
+
+### 递归
+
+递归是一种函数调用自身的方式。但是递归算法的效率比较低，因为递归算法会不断的调用自身，直到达到终止条件。
+==要让递归停止，必须要有一个终止条件==
+例如：
+
+```.
+def factorial(n): #求阶乘
+   if n == 1: #终止条件
+      return 1 #返回1
+   else: #递归条件
+      return n * factorial(n-1) #返回n乘以n-1的阶乘
+```
+
+#### 汉诺塔
+
+```.
+def hanoi(n,a,b,c): #n表示盘子的数量，a,b,c表示三个柱子
+   if n == 1: #终止条件
+      print(a,"-->",c) #将盘子从a柱子移动到c柱子
+   else: #递归条件
+      hanoi(n-1,a,c,b) #将n-1个盘子从a柱子移动到b柱子
+      print(a,"-->",c) #将盘子从a柱子移动到c柱子
+      hanoi(n-1,b,a,c) #将n-1个盘子从b柱子移动到c柱子
+hanoi(3,"A","B","C") #将3个盘子从A柱子移动到C柱子
+```
+
+### 类型注解
+
+类型注解是一种语法，用来指定函数的参数和返回值的类型。
+注解语法：
+
+```.
+def 函数名(参数:类型,参数:类型) -> 返回值类型:
+   函数体
+```
+
+例如：
+
+```.
+def add(x:int,y:int) -> int: #指定函数的参数和返回值的类型
+   return x + y #返回x和y的和
+add(1,2) #调用函数，传入参数1和2
+```
+
+==这个只是方便阅读，不会影响程序的运行==
+
+### 内省
+
+内省是一种机制，用来获取对象的信息。
+例如：
+
+```.
+def add(x:int,y:int) -> int: #指定函数的参数和返回值的类型
+   return x + y #返回x和y的和
+add(1,2) #调用函数，传入参数1和2
+add.__annotations__ #获取函数的参数和返回值的类型
+add.__name__ #获取函数的名称
+add.__doc__ #获取函数的文档
+```
+
+输出：
+
+```.
+{'x': <class 'int'>, 'y': <class 'int'>, 'return': <class 'int'>}
+'add'
+None
+```
+
+### 高阶函数
+
+高阶函数是指函数可以作为参数传递给其他函数，或者函数的返回值是一个函数。
+
+#### `functools`函数
+
+`functools`是一个内置模块，它提供了一些高阶函数。
+
+例如：
+
+```.
+import functools #导入functools模块
+def add(x,y): #定义一个函数，用来相加
+   return x + y #返回x和y的和
+functools.reduce(add,[1,2,3,4,5]) #使用reduce函数，将列表中的元素相加
+```
+
+输出：
+
+```.
+15
+```
+
+解释：`functools.reduce`函数的作用是将第二个参数中的元素依次传入到第一个参数中，然后返回一个值。
+
+### 偏函数
+
+偏函数是指对一个函数进行部分参数的固定，返回一个新的函数。
+例如：
+
+```.
+import functools #导入functools模块
+square = functools.partial(pow,exp=2) #对pow函数进行部分参数的固定，返回一个新的函数
+square(3) #调用新的函数，传入参数3
+```
+
+输出：
+
+```.
+9
+```
+
+解释：`pow`函数的作用是计算一个数的幂次方。
+
+### '@wraps'装饰器
+
+`@wraps`装饰器是一个内置装饰器，它可以用来保留被装饰函数的元信息。
+例如：
+
+```.
+import functools #导入functools模块
+def my_decorator(func): #定义一个装饰器
+   @functools.wraps(func) #保留被装饰函数的元信息
+   def wrapper(*args, **kwargs): #定义一个包装器
+      print("装饰器") #装饰器的功能
+      return func(*args, **kwargs) #调用被装饰的函数
+   return wrapper #返回包装器
+@my_decorator #装饰器，相当于funA = my_decorator(funA)
+def funA(): #被装饰的函数
+   print("函数") #被装饰的函数的功能
+funA() #调用被装饰的函数
+funA.__name__ #获取被装饰函数的名称
+funA.__doc__ #获取被装饰函数的文档
+```
+
+输出：
+
+```.
+装饰器
+函数
+'funA'
+None
+```
+
+小声bb：感觉没什么用
+
+## 永久存储
+
+### 创建文件和修改文件
+
+```.
+f = open("test.txt","w") #创建一个文件，文件名是test.txt，模式是w，w表示写入模式，如果文件不存在，会创建一个新的文件，如果文件存在，会覆盖原有的文件
+f.write("hello world") #写入文件
+f.writelines(["hello world","hello world","hello world"]) #写入文件
+f.close() #关闭文件
+```
+
+解释：`open`函数的第一个参数是文件名，第二个参数是模式，模式有以下几种：
+
+- r：读取模式，默认模式
+- w：写入模式，如果文件不存在，会创建一个新的文件，如果文件存在，会覆盖原有的文件
+- a：追加模式，如果文件不存在，会创建一个新的文件，如果文件存在，会在文件的末尾添加内容
+
+`write`函数的作用是写入文件，`writelines`函数的作用是写入文件，但是`writelines`函数会将列表中的元素依次写入文件。
+
+`close`函数的作用是关闭文件,如果没有关闭文件，那么文件的内容不会被保存。
+
+### 文件对象操作
+
+以下表格是对文件对象操作的常用方法：
+
+| 方法 | 描述 |
+| --- | --- |
+| `read()` | 读取整个文件 |
+| `readline()` | 读取文件的一行 |
+| `readlines()` | 读取文件的所有行 |
+| `write()` | 写入文件 |
+| `writelines()` | 写入文件 |
+| `seek()` | 设置文件指针的位置 |
+| `tell()` | 返回文件指针的位置 |
+| `close()` | 关闭文件 |
+| `flush()` | 刷新文件缓冲区 |
+| `truncate()` | 截断文件 |
+| `fileno()` | 返回文件描述符 |
+| `isatty()` | 判断文件是否是终端设备 |
+| `readable()` | 判断文件是否可读 |
+| `writable()` | 判断文件是否可写 |
+| `seekable()` | 判断文件是否可定位 |
+| `closed()` | 判断文件是否关闭 |
+
+#### `truncate()`
+
+`truncate`函数的作用是截断文件，`truncate`函数的参数是文件的大小。
+例如：
+
+```.
+f = open("test.txt","w") #创建一个文件，文件名是test.txt，模式是w，w表示写入模式，如果文件不存在，会创建一个新的文件，如果文件存在，会覆盖原有的文件，==即原有文件的内容会被清空==
+f.write("hello world") #写入文件
+f.truncate(5) #截断文件，文件的大小是5
+f.close() #关闭文件
+```
+
+输出：
+
+```.
+hello
+```
+
+### 路径处理
+
+`pathlib`是一个内置模块，它提供了一些路径处理的函数。
+例如：
+
+```.
+from pathlib import Path #导入Path类
+p = Path("test.txt") #创建一个Path对象，文件名是test.txt
+p.exists() #判断文件是否存在
+p.is_file() #判断是否是文件
+p.is_dir() #判断是否是目录
+p.name #获取文件名
+Patn.cwd() #获取当前工作目录
+'''还有很多操作，这里就不一一列举了，有兴趣的可以自己去看官方文档'''
+```
+
+### 上下文管理器
+
+上下文管理器是一种特殊的对象，它可以用来管理资源的获取和释放。
+例如：
+
+```.
+with open("test.txt","r") as f: #使用with语句打开文件，with语句会自动关闭文件
+   f.write("hello world") #写入文件
+   f.read() #读取文件
+```
+
+解释：`with`语句的作用是打开文件，`with`语句会自动关闭文件。
+
+例二：
+
+```.
+with open("xyf.txt","w") as f: #使用with语句打开文件，with语句会自动关闭文件
+   f.write("hello world") #写入文件
+   1/0;
+```
+
+输出：
+
+```.
+Traceback (most recent call last):
+  File "D:\Python\Python.md\test.py", line 3, in <module>
+    1/0;
+ZeroDivisionError: division by zero
+```
+
+解释：这里虽然会报错，但是文件的内容还是会被写入到文件当中，因为`with`语句会自动关闭文件。
+
+### `pickle`模块--允许将Python对象保存到文件中
+
+`pickle`模块是一个内置模块，它提供了一些函数，用来将Python对象保存到文件中。
+`dump`函数的作用是将Python对象保存到文件中。
+`load`函数的作用是从文件中加载Python对象。
+例如：
+
+```.
+"""写入"""
+import pickle #导入pickle模块
+x,y,z=1,2,3
+s="xyf"
+l=["xyf",1,2]
+d={"xyf":1,"xyf2":2}
+
+with open("test.pkl","wb") as f: #使用with语句打开文件，with语句会自动关闭文件
+   pickle.dump(x,f) #将x保存到文件中
+   pickle.dump(y,f) #将y保存到文件中
+   pickle.dump(z,f) #将z保存到文件中
+   pickle.dump(s,f) #将s保存到文件中
+   pickle.dump(l,f) #将l保存到文件中
+   pickle.dump(d,f) #将d保存到文件中
+   '''或者用元组的形式保存：
+   pickle.dump((x,y,z,s,l,d),f) '''
+   
+```
+
+解释：`dump`函数的第一个参数是要保存的对象，第二个参数是文件对象。
+
+```.
+"""读取"""
+import pickle #导入pickle模块
+with open("test.pkl","rb") as f: #使用with语句打开文件，with语句会自动关闭文件
+   x=pickle.load(f) #从文件中加载x
+   y=pickle.load(f) #从文件中加载y
+   z=pickle.load(f) #从文件中加载z
+   s=pickle.load(f) #从文件中加载s
+   l=pickle.load(f) #从文件中加载l
+   d=pickle.load(f) #从文件中加载d
+   print(x,y,z,s,l,d,sep="\n") #打印x,y,z,s,l,d,`sep="\n"`表示每个元素之间换行
+```
+
+输出：
+
+```.
+1
+2
+3
+xyf
+['xyf', 1, 2]
+{'xyf': 1, 'xyf2': 2}
+```
+
+解释：`load`函数的作用是从文件中加载Python对象。
