@@ -1,0 +1,3 @@
+D:/Learning/Learning/C/C_Practise/HW/cmake-build-debug/CMakeFiles/HW.dir
+D:/Learning/Learning/C/C_Practise/HW/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Learning/Learning/C/C_Practise/HW/cmake-build-debug/CMakeFiles/rebuild_cache.dir
