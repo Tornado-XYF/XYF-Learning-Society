@@ -3259,7 +3259,7 @@ def outer():
       def inner():
             print(x) #内部函数可以访问外部函数的变量
       return inner
-f = outer() #调用外部函数，返回内部函数,c此时`f`就相当于是`inner`
+f = outer() #调用外部函数，返回内部函数，此时`f`就相当于是`inner`
 f() #调用内部函数
 ```
 
@@ -3837,3 +3837,1108 @@ xyf
 ```
 
 解释：`load`函数的作用是从文件中加载Python对象。
+
+## 处理异常
+
+==异常可以嵌套==
+`try`语句的作用是尝试执行一段代码，如果出现异常，就会跳转到`except`语句中执行。
+`except`语句的作用是捕获异常，`except`语句的参数是异常的类型。
+例如：
+
+```.
+try: #尝试执行这段代码
+   1/0 #这里会抛出一个异常，因为0不能作为除数
+except ZeroDivisionError: #捕获异常，ZeroDivisionError是异常的类型
+   print("除数不能为0") #打印异常信息
+```
+
+输出：
+
+```.
+除数不能为0
+```
+
+如果异常类型出错，那么仍然会报错。
+例如：
+
+```.
+try: #尝试执行这段代码
+   520+“xyf” #这里会抛出一个异常
+except ZeroDivisionError: #捕获异常，但是这里的异常类型是TypeError，所以不会捕获到异常
+   print("出错了") #打印异常信息
+```
+
+输出：
+
+```.
+Traceback (most recent call last):
+  File "D:\Python\Python.md\test.py", line 3, in <module>
+    520+“xyf” #这里会抛出一个异常
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+```
+
+### 使用`as`可以将异常信息赋值给一个变量
+
+例如：
+
+```.
+try: #尝试执行这段代码
+   1/0 #这里会抛出一个异常，因为0不能作为除数
+except ZeroDivisionError as e: #捕获异常，ZeroDivisionError是异常的类型，as e是将异常信息赋值给变量e
+   print(e) #打印异常信息
+```
+
+输出：
+
+```.
+division by zero
+```
+
+### 如果不确定异常类型，可以用元组的形式来捕获异常
+
+例如：
+
+```.
+try: #尝试执行这段代码
+   1/0 #这里会抛出一个异常，因为0不能作为除数
+   520+“xyf” #这里会抛出一个异常
+except (ZeroDivisionError,TypeError): #捕获异常，
+   pass #检测到其中一个任何一个异常就会跳过
+```
+
+### 可以对不同的异常类型使用不同的处理方式
+
+例如：
+
+```.
+try: #尝试执行这段代码
+   1/0 #这里会抛出一个异常，因为0不能作为除数
+   520+“xyf” #这里会抛出一个异常
+except ZeroDivisionError: #捕获异常，ZeroDivisionError是异常的类型
+   print("除数不能为0") #打印异常信息
+except TypeError: #捕获异常，TypeError是异常的类型
+   print("类型错误") #打印异常信息
+```
+
+输出：
+
+```.
+除数不能为0
+```
+
+解释：当检查到其中一个异常时，就会跳过后面的异常处理。
+
+### `try-except-else`和`finally`语句
+
+`try-except-else`语句的作用是在没有异常的情况下执行一段代码。
+`finally`语句的作用是无论是否有异常，都会执行一段代码。
+
+例如：
+
+```.
+try: #尝试执行这段代码
+   1/1 #这里不会抛出异常
+except ZeroDivisionError: #捕获异常，ZeroDivisionError是异常的类型
+   print("除数不能为0") #打印异常信息
+else: #没有异常的情况下执行这段代码
+   print("没有异常") #打印信息
+```
+
+输出：
+
+```.
+没有异常
+```
+
+例如：
+
+```.
+try: #尝试执行这段代码
+   1/0 #这里会抛出一个异常，因为0不能作为除数
+except ZeroDivisionError: #捕获异常，ZeroDivisionError是异常的类型
+   print("除数不能为0") #打印异常信息
+else: #没有异常的情况下执行这段代码
+   print("没有异常") #打印信息
+finally: #无论是否有异常，都会执行这段代码
+   print("无论是否有异常，都会执行这段代码") #打印信息
+```
+
+输出：
+
+```.
+除数不能为0
+无论是否有异常，都会执行这段代码
+```
+
+### `raise`语句,抛出异常
+
+`raise`语句的作用是抛出一个异常。
+例如：
+
+```.
+raise ZeroDivisionError("除数不能为0") #抛出一个异常，ZeroDivisionError是异常的类型，"除数不能为0"是异常的信息
+```
+
+输出：
+
+```.
+Traceback (most recent call last):
+  File "D:\Python\Python.md\test.py", line 3, in <module>
+    raise ZeroDivisionError("除数不能为0") #抛出一个异常，ZeroDivisionError是异常的类型，"除数不能为0"是异常的信息
+ZeroDivisionError: 除数不能为0
+```
+
+解释：`raise`语句的作用是抛出一个异常，`raise`语句的参数是异常的类型和异常的信息。
+
+### 异常链
+
+异常链是一种机制，用来将一个异常传递给另一个异常。
+例如：
+
+```.
+raise ZeroDivisionError("除数不能为0") from ValueError #抛出一个异常，ZeroDivisionError是异常的类型，"除数不能为0"是异常的信息，from None表示没有异常
+```
+
+### `assert`语句
+
+`assert`语句的作用是断言，`assert`语句的参数是一个表达式，如果表达式为真，就会继续执行，如果表达式为假，就会抛出一个异常,且该异常只能是`AssertionError`类型。
+例如：
+
+```.
+assert 1==1 #断言，1==1为真，不会抛出异常
+assert 1==2 #断言，1==2为假，会抛出异常
+```
+
+### 利用异常实现跳转
+
+```.
+try：
+   while true：
+      while true：
+            for i in range(10)：
+               if i>3：
+                     raise
+                print(i)
+            print("被跳过")
+      print("被跳过")
+    print("被跳过")
+except：
+    print("跳到这里了")
+```
+
+输出：
+
+```.
+0
+1
+2
+3
+跳到这里了
+```
+
+## 模块
+
+模块是一个包含了Python代码的文件，模块可以被其他模块导入，也可以被其他模块导入。
+模块的作用是将代码组织起来，方便管理和重用。
+
+### 模块的导入
+
+模块的导入有两种方式：
+
+- 导入整个模块
+- 导入模块中的特定函数
+- 导入模块中的所有函数
+
+#### 导入整个模块
+
+```.
+import 模块名 #导入整个模块
+模块名.函数名() #调用模块中的函数
+```
+
+#### 导入模块中的特定函数
+
+```.
+from 模块名 import 函数名 #导入模块中的特定函数
+函数名() #调用函数
+```
+
+#### 导入模块中的所有函数
+
+```.
+from 模块名 import * #导入模块中的所有函数
+函数名() #调用函数
+```
+
+### 给模块起别名
+
+```.
+import 模块名 as 别名 #导入整个模块，给模块起别名
+别名.函数名() #调用函数
+```
+
+## `if __name__ == '__main__'`
+
+模块导入时，会执行模块中的所有代码，但是有些代码我们不想让它执行，此时就可以使用`if __name__ == '__main__'`来判断是否是直接执行模块。当一个模块被直接执行时，他的`__name__`属性的值是`__main__`，当一个模块被导入时，他的`__name__`属性的值是模块的名称。
+`if __name__ == '__main__'`是一个条件语句，它的作用是判断当前模块是否被直接执行，如果是，就执行下面的代码，如果不是，就不执行下面的代码。
+
+## 包
+
+包是一个包含了多个模块的文件夹，包的作用是将代码组织起来，方便管理和重用。
+包的导入有两种方式：
+
+- 导入整个包
+- 导入包中的特定模块
+- 导入包中的所有模块
+
+### 导入整个包
+
+```.
+import 包名 #导入整个包
+包名.模块名.函数名() #调用模块中的函数
+```
+
+### 导入包中的特定模块
+
+```.
+from 包名 import 模块名 #导入包中的特定模块
+模块名.函数名() #调用函数
+```
+
+### 导入包中的所有模块
+
+```.
+from 包名 import * #导入包中的所有模块
+模块名.函数名() #调用函数
+```
+
+### 通过`__init__.py`文件来控制包的导入
+
+`__init__.py`文件是一个特殊的文件，它的作用是用来控制包的导入。
+`__init__.py`文件可以为空，也可以包含一些初始化代码。
+
+#### `__init__.py`定义属于包的全局变量
+
+例如：
+
+```.
+"""__init__.py"""
+x=1 #定义一个全局变量
+y=2 #定义一个全局变量
+z=3 #定义一个全局变量
+```
+
+此时在其他模块中导入包时，就可以使用包中的全局变量。
+例如：
+
+```.
+import 包名 #导入整个包
+print(包名.x) #打印包中的全局变量x
+print(包名.y) #打印包中的全局变量y
+print(包名.z) #打印包中的全局变量z
+```
+
+#### `__aLL__`遏制`import *`的副作用，防止导入包中的所有模块
+
+例如：
+
+```.
+"""__init__.py"""
+__all__=["x","y","z"] #定义一个列表，列表中的元素是包中的模块的名称
+```
+
+此时在其他模块中导入包时，就只能导入包中的指定模块。
+
+ 对于模块来说，如果没有使用`__all__`来定义模块的导出列表，那么`import *`语句会导入模块中的所有变量和函数。
+ 对于包来说，如果没有使用`__init__.py`来定义包的导出列表，那么`import *`的语句==不会导入包里面的任何模块==。
+
+## 类和对象
+
+类是一种用户定义的数据类型，它包含了数据成员和成员函数。
+对象是类的实例，它包含了类的数据成员和成员函数。
+类和对象的关系是：类是对象的模板，对象是类的实例。
+
+### 实例化对象
+
+```.
+class 类名: #定义一个类，类名是类的名称
+   def 方法名(self): #定义一个方法，方法名是方法的名称，self是一个特殊的参数，它的作用是指向当前对象
+      print(self) #打印self
+```
+
+解释：`class`关键字用来定义一个类，类名是类的名称。
+
+```.
+obj=类名() #实例化一个对象，obj是对象的名称，类名是类的名称
+obj.方法名() #调用对象的方法，方法名是方法的名称
+```
+
+### 为对象添加属性
+
+```.
+class 类名: 
+   def 方法名(self): 
+      print(self) 
+obj=类名() #实例化一个对象，obj是对象的名称，类名是类的名称
+obj.属性名=值 #为对象添加属性，属性名是属性的名称，值是属性的值
+```
+
+同类的对象之间的属性是相互独立的，所以属性名字可以相同不会冲突。
+
+### `self`究竟是什么
+
+`self`是一个特殊的参数，它的作用是指向当前对象。
+当实例化一个对象时，引用类里面的方法，会将对象自己作为第一个参数传递给方法，此时就需要`self`来充当这个参数。
+例如：
+
+```.
+class 类名: #定义一个类，类名是类的名称
+   def 方法名(self): #定义一个方法，方法名是方法的名称，self是一个特殊的参数，它的作用是指向当前对象
+      print(self) #打印self
+```
+
+### 继承
+
+继承是一种机制，用来表示一个类是另一个类的子类。
+==所有类没有规定继承自哪个类，所以所有类都是object类的子类。==
+子类继承父类的属性和方法，子类可以重写父类的方法，子类可以添加新的属性和方法，也可以覆盖。
+例如：
+
+```.
+class A #定义一个父类，父类是类的名称
+   def 方法名(self): #定义一个方法，方法名是方法的名称，self是一个特殊的参数，它的作用是指向当前对象
+      print(self) #打印self
+```
+
+```.
+class B(A) #定义一个子类，子类是类的名称，A是父类的名称
+   def 方法名(self): #定义一个方法，方法名是方法的名称，self是一个特殊的参数，它的作用是指向当前对象
+      print(self) #打印self
+```
+
+### 判断一个对象是否是一个类的实例
+
+isinstance(对象,类) #判断一个对象是否是一个类的实例，对象是对象的名称，类是类的名称，返回值是布尔值。
+
+### 多重继承
+
+多重继承是一种机制，用来表示一个类可以继承多个父类。
+例如：
+
+```.
+class A: #定义一个父类，父类是类的名称
+   def 方法名(self): #定义一个方法，方法名是方法的名称，self是一个特殊的参数，它的作用是指向当前对象
+      print(self) #打印self
+class B: #定义一个父类，父类是类的名称
+   def 方法名(self): #定义一个方法，方法名是方法的名称，self是一个特殊的参数，它的作用是指向当前对象
+      print(self) #打印self
+class C(A,B): #定义一个子类，子类是类的名称，A是父类的名称，B是父类的名称
+   def 方法名(self): #定义一个方法，方法名是方法的名称，self是一个特殊的参数，它的作用是指向当前对象
+      print(self) #打印self
+```
+
+C的对象会按照先A后B的顺序来查找方法，当A没有需要的方法时，才回去B中寻找。
+
+### 组合
+
+组合是一种机制，用来表示一个类可以包含多个其他类的对象。
+例如：
+
+```.
+class A:
+   def 方法名(self):、
+      print(self) #打印self
+class B:
+   def 方法名(self):、
+      print(self) #打印self
+class C: 
+   def 方法名(self):
+      print(self) #打印self
+class D:
+   a = A() #创建一个A的对象，a是对象的名称，A是类的名称
+   b = B() 
+   c = C() 
+   def 方法名(self):
+      self.a.方法名()
+      self.b.方法名() 
+      self.c.方法名()
+```
+
+### 构造函数
+
+构造函数是一种特殊的方法，用来初始化对象的属性。
+构造函数的名称是`__init__`，它的作用是用来初始化对象的属性。
+例如：
+
+```.
+class C：
+   def __init__(self,x,y):
+     self.x = x
+     self.y = y
+   def add(self):
+     return self.x + self.y 
+   def mul(self):
+     return self.x * self.y
+```
+
+### 动态添加属性和方法
+
+动态添加属性和方法是一种机制，用来在运行时添加属性和方法。
+
+```.
+class C：
+   def __init__(self,x,y):
+     self.x = x
+     self.y = y
+   def add(self):
+     return self.x + self.y
+   def mul(self):
+     return self.x * self.y
+p = C(1,2)
+p.z = 3 #动态添加属性
+p.add = lambda self: self.x + self.y #动态添加方法
+p.__dict__ #查看对象的属性和方法
+```
+
+输出：
+
+```.
+{'x': 1, 'y': 2, 'z': 3, 'add': <function C.<lambda> at 0x0000022C444780D0>}
+```
+
+### 重写
+
+重写是一种机制，用来表示一个类可以重写父类的方法。
+例如：
+
+```.
+class C：
+   def __init__(self,x,y):
+     self.x = x
+     self.y = y
+   def add(self):
+     return self.x + self.y 
+   def mul(self):
+     return self.x * self.y
+class D(C):
+   def__init__(self,x,y,z):
+     C.__init__(self,x,y)
+     self.z = z
+   def add(self):
+     return C.add(self) + self.z
+   def mul(self):
+     return C.mul(self) * self.z
+```
+
+### 严重问题——钻石继承
+
+钻石继承是一种机制，用来表示一个类可以继承多个父类。
+例如：
+
+```.
+class A:
+   def __init__(self):
+     print("A")
+class B1(A):
+   def __init__(self):
+     A.__init__(self)
+     print("B1")
+class B2(A):
+   def __init__(self):
+     A.__init__(self)
+     print("B2")
+class C(B1,B2):
+   def __init__(self):
+     B1.__init__(self)
+     B2.__init__(self)
+     print("C")
+```
+
+这样写会导致A被初始化两次，所以会出现问题。
+
+输出：
+
+```.
+A
+B1
+A
+B2
+C
+```
+
+### `super`
+
+`super`是一个特殊的函数，用来调用父类的方法。
+例如：
+
+```.
+class A:
+   def __init__(self):
+     print("A")
+class B1(A):
+     super().__init__()
+     print("B1")
+class B2(A):
+     super().__init__()
+     print("B2")
+class C(B1,B2):
+   def __init__(self):
+     super().__init__()
+     print("C")
+```
+
+输出：
+
+```.
+A
+B1
+B2
+C
+```
+
+解释：用`super`查找父类方法，就会自动地按照MRO的顺序查找（MRO是方法解析顺序，即按照继承关系来查找方法的顺序，可以通过类名的`__mro__`属性来查看）。如果之前的方法已经被调用过了，就不会再调用了。
+
+==`super`的性能很优秀，但是有不少小坑，使用之前可以查看一下==
+
+### mixin
+
+mixin是一种机制，用来表示一个类可以包含多个其他类的方法。写游戏外挂基本上用的都是mixin。
+例如：
+
+```.
+class A:
+   def __init__(self,name,age):
+     self.name = name
+     self.age = age
+   def say(self):
+     print(f"my name is{self.name}and my age is{self.age}")
+class B:
+   def fly(self):
+     print("I can fly")
+class C(A,B):
+   def swim(self):
+     print("I can swim")
+p = C("xyf",20)
+p.say()
+p.fly()
+p.swim()
+```
+
+输出：
+
+```.
+my name is xyf and my age is 20
+I can fly
+I can swim
+```
+
+### 多态
+
+多态体现在子类在继承父类之后，可以对父类的方法进行重写，从而实现不同的功能。
+
+### 多态接口
+
+多态接口是一种机制，一个函数可以接受多种类型的对象作为参数，从而实现不同的功能。
+
+### 鸭子类型
+
+鸭子类型是一种机制，当对象作为参数传递给函数时，函数会检查对象是否有特定的方法，如果有，就会调用该方法，否则就会抛出异常，并不会检查对象的类型。
+
+### python版"私有变量"，"私有方法"--名字改编术
+
+python没有真正的私有变量和私有方法，但是可以通过名字改编术来实现私有变量和私有方法。
+
+名字改编术是一种机制，用来将一个变量或方法的名称改编成一个新的名称，从而实现类似的私有变量和私有方法。
+
+```.
+
+class C:
+   def __init__(self,x):
+     self.__x = x """这里面把x变成了“私有变量”."""
+   def set_x(self,x):
+     self.__x = x 
+   def get_x(self):
+     print(self.__x)
+c = C(250)
+c.__x
+```
+
+输出：
+
+```.
+Traceback (most recent call last):
+  File "D:\Python\Python.md\test.py", line 10, in <module>
+    c.__x
+AttributeError: 'C' object has no attribute '__x'
+```
+
+解释：`__x`是一个"私有变量"，只能通过类里面的方法访问，外部不能访问。
+
+```.
+c.get_x()
+c.__dict__ """查看对象的属性"""
+c._C__x 
+```
+
+输出：
+
+```.
+250
+{'_C__x': 250} """发现只是把x改了名字，但是还是可以访问"""
+250
+```
+
+==但是动态添加属性是无法规定私有变量的，只能在类里面规定私有变量==
+
+==所以当看到单个或两个下划线开头的变量时，不要去管他，他可能是内部变量，不要随意改动==
+
+### `__slots__`限制动态添加属性
+
+`__slots__`是一个特殊的属性，用来限制动态添加属性。
+例如：
+
+```.
+class C:
+   __slots__ = ("x","y")
+   def __init__(self,x,y):
+     self.x = x
+c = C(250)
+c.y = 250
+c.x
+c.y
+c.z = 250
+```
+
+输出：
+
+```.
+Traceback (most recent call last):
+  File "D:\Python\Python.md\test.py", line 11, in <module>
+    c.z = 250
+AttributeError: 'C' object has no attribute 'z'
+```
+
+解释：`__slots__`限制了动态添加属性，只能添加`x`和`y`，其他属性都不能添加。
+
+甚至在构造函数中也不能添加属性
+
+```.
+class C:
+   __slots__ = ("x","y")
+   def __init__(self,x,y):
+     self.x = x
+     self.y = y
+     self.z = Z
+```
+
+输出：
+
+```.
+Traceback (most recent call last):
+  File "D:\Python\Python.md\test.py", line 11, in <module>
+    self.z = Z
+AttributeError: 'C' object has no attribute 'z'
+```
+
+==`__slots__`只能限制动态添加属性，不能限制继承的属性,在子类中是不生效的==
+
+### 魔法方法`__new__`
+
+`__new__`是一个特殊的方法，用来创建对象。
+`__new__`的作用是在对象创建之前调用，它的返回值是一个对象。
+例如：
+
+```.
+class CapStr(str): #继承自str类
+   def __new__(cls,string):
+     string = string.upper()
+     return super().__new__(cls,string)
+s = CapStr("hello")
+s
+```
+
+输出：
+
+```.
+HELLO
+```
+
+### 魔法方法`__del__`
+
+`__del__`是一个特殊的方法，用来销毁对象。
+`__del__`的作用是在对象销毁之前调用，它的返回值是None。
+例如：
+
+```.
+class C:
+   def __init__(self,):
+     print("我来了")
+   def __del__(self):
+     print("我走了)
+c = C()
+del c
+```
+
+输出：
+
+```.
+我来了
+我走了
+```
+
+python具有垃圾回收机制，即当一个对象没有被引用时，就会被销毁。所以在使用`__del__`之前，如果把对象赋值给其他变量，此时对象就会被引用，就不会被销毁，此时只有销毁对象赋予的变量时，对象才会被销毁。
+
+```.
+class C:
+   def __init__(self,):
+     print("我来了")
+   def __del__(self):
+     print("我走了)
+c = C()
+d = c
+del c
+del d
+```
+
+输出：
+
+```.
+我来了
+我走了 """其实是走到del d的时候，对象才会被销毁，才会出现这个输出结果"""
+```
+
+### 闭包实现"复活"被销毁的对象
+
+```.
+class E:
+   def __init__(self,name,func):
+     self.name = name
+     self.func = func
+   def __del__(self):
+     self.func(self)
+def outter():
+   x=0
+   def inner(y = None):
+     nonlocal x """nonlocal关键字用来声明一个变量是外层函数的变量"""
+     if y :"""如果y不为None，就把y赋值给x"""
+       x = y
+     else:
+       return x
+   return inner
+f = outter()
+e = E("xyf",f)
+del e
+e
+```
+
+输出：
+
+```.
+Traceback (most recent call last):
+  File "D:\Python\Python.md\test.py", line 26, in <module>
+    e
+NameError: name 'e' is not defined
+```
+
+说明：`e`对象被销毁了
+
+```.
+g = f() """此时f()就相当于是inner()，因为f()的返回值是inner函数,g就是被保存的e对象"""
+g.name
+```
+
+输出：
+
+```.
+xyf
+```
+
+说明：`e`对象被复活了
+
+### 魔法方法`__call__`
+
+### 类方法和静态方法
+
+类方法作用是用来操作类的属性，类方法的第一个参数是类本身，通常用`cls`来表示。
+
+```.
+class C:
+   count = 0
+   def __init__(self):
+     C.count += 1
+   @classmethod
+   def get_count(cls):
+     print(f"该类实例化了{cls.count}个对象") """cls是类本身"""
+c1 = C()
+c2 = C()
+c3 = C()
+c3.get_count()
+```
+
+输出：
+
+```.
+该类实例化了3个对象
+```
+
+解释：`c3.get_count()`相当于`C.get_count(c3)`，`c3`是对象本身，`C`是类本身，`cls`是类本身。
+
+当我们需要创立一个不需要参数的方法可以使用静态方法，静态方法可以创立一个不需要参数绑定的方法。
+静态方法的第一个参数是类本身，通常用`cls`来表示。
+
+```.
+class C:
+   count = 0
+   def __init__(self):
+     C.count += 1
+   @staticmethod
+   def get_count():
+     print(f"该类实例化了{C.count}个对象")
+c1 = C()
+c2 = C()
+c3 = C()
+c3.get_count()
+```
+
+输出：
+
+```.
+该类实例化了3个对象
+```
+
+不过类似于统计有多少个实例化的对象，更加建议使用类方法，因为当涉及到继承时，类方法会更加方便。
+
+```python
+class C:
+   count = 0
+   @classmethod
+   def add(cls):
+     cls.count += 1 """实现自动统计实例化的对象"""
+   def __init__(self):
+     self.add()
+   def get_count(self):
+     print(f"该类实例化了{cls.count}个对象")
+class D(C):
+   count = 0
+class E(C):
+   count = 0
+c1 = C()
+d1,d2 = D(),D()
+e1,e2,e3 = E(),E(),E()
+c1.get_count()
+d1.get_count()
+e1.get_count()
+```
+
+输出：
+
+```.
+该类实例化了3个对象
+该类实例化了2个对象
+该类实例化了3个对象
+```
+
+### `type`函数
+
+`type`函数的作用是传入一个对象，返回一个对象的类型。
+
+例如：
+
+```.
+type(1)("520")
+```
+
+输出：
+
+```.
+520
+```
+
+解释：`type(1)`返回的是`int`类型，`type(1)("520")`相当于`int("520")`，返回的是`520`。
+
+第二种用法：根据传入的三个参数，创建一个新的type类型的对象。
+用法为：`type(类名,父类,属性)`，第一个参数是一个字符串，用来表示类名，第二个参数是一个元组，用来表示继承的父类，第三个参数是一个字典，用来表示类的属性。
+
+```python
+class C:
+   pass
+D = type("D",(C,),{"x":1,"y":2}) """创建一个名为D的类，继承自C，属性为x和y"""
+D.x
+D.y
+D.__bases__
+```
+
+输出：
+
+```.
+1
+2
+(<class '__main__.C'>,) """说明D继承自C"""
+```
+
+属性里面还可以添加方法，例如：
+
+```python
+def func(self,name="xyf"):
+   print(f"hello {name}")
+F = type("F",(),dict(say_hi=func))
+f = F() """实例化一个F类的对象"""
+f.say_hi()
+```
+
+输出：
+
+```.
+hello xyf
+```
+
+### `__init_subclass__`加强父类对子类的控制
+
+`__init_subclass__`是一个特殊的方法，用来加强父类对子类的控制。
+例如：
+
+```python
+class C:
+   def__init_subclass__(cls):
+      print("""我是父类，我被继承了""")
+      cls.x = 520
+class D(C):
+   x=250
+D.x
+```
+
+输出：
+
+```.
+我是父类，我被继承了 """子类D生成以后，会直接触发父类的__init_subclass__方法，所以会输出这个结果"""
+520 """说明父类的__init_subclass__方法可以对子类进行控制"""
+```
+
+还可以用`__init_subclass__`方法来通过父类向子类传递参数。
+
+```python
+class C:
+   def__init_subclass__(cls,value):
+      print("""我是父类，我被继承了""")
+      cls.x = value
+class D(C,value=250): """第一次遇到这种传参形式"""
+   x = 520
+D.x
+```
+
+输出：
+
+```.
+我是父类，我被继承了
+250
+```
+
+用`type`试一试：
+
+```python
+class C:
+   def__init_subclass__(cls,value1,value2):
+      print("""我是父类，我被继承了""")
+      cls.x = value1
+      cls.y = value2
+D = type("D",(C,),dict(x = 250),value1 = 520,value2 = 666)
+D.x
+D.y
+```
+
+输出：
+
+```.
+我是父类，我被继承了
+520
+666
+```
+
+### 元类
+
+元类是用来创建类的类，元类的作用是用来创建类。
+创建一个元类需要继承自`type`类：
+
+```python
+class MyMeta(type):
+   pass
+class C(metaclass=MyMeta):
+   pass
+c = C()
+type(c)
+type(C)
+type(MyMeta)
+```
+
+输出：
+
+```.
+<class '__main__.C'>
+<class '__main__.MyMeta'>
+<class 'type'>
+```
+
+解释：`type(c)`返回的是`C`类的类型，`type(C)`返回的是`MyMeta`类的类型，`type(MyMeta)`返回的是`type`类的类型。
+
+```python
+class MetaC(type):
+   def __new__(mcls,name,bases,attrs): """mcls是元类本身，name是类名，bases是父类，attrs是属性"""
+      print("__new__() in MetaC")
+      return type.__new__(mcls,name,bases,attrs)
+class C(metaclass=MetaC): """依照元类`MetaC`创建一个类C"""
+   def __new__(cls):
+      print("__new__() in C")
+      return super().__new__(cls) """元类创建的类，不会影响该类的继承体系，所以这里默认继承自object"""
+   def __init__(self):
+      print("__init__() in C")
+      super().__init__()
+```
+
+输出：
+
+```.
+__new__() in MetaC
+__init__() in MetaC
+```
+
+解释：这里并没有输出`__new__() in C`，说明元类的`__new__`方法在创建类时就已经执行了，而不是在实例化对象时执行。
+
+### 抽象基类
+
+抽象基类其实很像Java中的接口，抽象基类的作用是用来规定子类必须实现的方法。实现抽象基类必须使用`abc`模块。
+
+```python
+from abc import ABCMeta,abstractmethod
+class Fruit(metaclass=ABCMeta):
+   def __init__(self,name):
+      self.name = name
+   @abstractmethod
+   def good_for_health(self):
+      pass
+fruit = Fruit("apple")
+```
+
+输出：
+
+```.
+Traceback (most recent call last):
+  File "D:\Python\Python.md\test.py", line 10, in <module>
+    fruit = Fruit("apple")
+TypeError: Can't instantiate abstract class Fruit with abstract methods good_for_health
+```
+
+解释：`Fruit`类是一个抽象基类，它规定了子类必须实现`good_for_health`方法，否则就会报错。
+
+```python
+class Apple(Fruit):
+   def good_for_health(self):
+      print("apple is good for health")
+apple = Apple("apple")
+apple.good_for_health()
+```
+
+输出：
+
+```.
+apple is good for health
+```
