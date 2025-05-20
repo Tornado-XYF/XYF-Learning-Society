@@ -1,0 +1,3 @@
+D:/Learning/Learning/C/C_Practise/picture/cmake-build-debug/CMakeFiles/picture.dir
+D:/Learning/Learning/C/C_Practise/picture/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Learning/Learning/C/C_Practise/picture/cmake-build-debug/CMakeFiles/rebuild_cache.dir

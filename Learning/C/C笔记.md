@@ -1085,7 +1085,7 @@ zippo = 00000000005ffe40 , zippo+1 = 00000000005ffe48
 zippo[0] = 00000000005ffe40, zippo[0]+1 = 00000000005ffe44
 *zippo = 00000000005ffe40, *zippo+1 = 00000000005ffe44
 zippo[0][0] = 2
-*zippo[0] = 2**zippo = 2
+*zippo[0] = 2 **zippo = 2
 zippo[2][1] = 3
 *(*(zippo+2)+1) = 3
 ```
