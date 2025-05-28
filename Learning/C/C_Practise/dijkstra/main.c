@@ -5,7 +5,7 @@ typedef int E;
 
 #define MAXSIZE 100
 #define MAXEDGE 100
-#define MAX 0x10000
+#define MAX 500
 
 typedef struct
 {
@@ -15,14 +15,33 @@ typedef struct
    int edge_num;
 }Mat_Graph;
 
+char const *campus[] = {
+   "西大门",
+   "国旗台",
+   "花园",
+   "教学楼A",
+   "教学楼B",
+   "教学楼C",
+   "校史草地",
+   "操场",
+   "试验田",
+   "食堂",
+   "快递站",
+   "宿舍1，2",
+   "宿舍3，4",
+   "宿舍7，8",
+
+};
+
+
 void createGraph(Mat_Graph* G)
 {
-   G->vertex_num = 9; //点的最大数
-   G->edge_num = 16;  //边的最大数
+   G->vertex_num = 14; //点的最大数
+   G->edge_num = 24;  //边的最大数
 
     for (int i = 0;i < G->vertex_num; i++)
    {
-     G->vertex[i] = "食堂"; //定义下角标
+     G->vertex[i] = i; //定义下角标
    }
     for(int i = 0;i < G->vertex_num; i++)
     {
@@ -38,29 +57,42 @@ void createGraph(Mat_Graph* G)
           }
        }
     }
-   G->arc[0][1] = 1;
-   G->arc[0][2] = 5;
+   G->arc[0][1] = 100;
+   G->arc[0][7] = 70;
+   G->arc[0][9] = 100;
 
-   G->arc[1][2] = 3;
-   G->arc[1][3] = 7;
-   G->arc[1][4] = 5;
 
-   G->arc[2][4] = 1;
-   G->arc[2][5] = 7;
+   G->arc[1][2] = 50;
+   G->arc[1][3] = 50;
+   G->arc[1][7] = 60;
+   G->arc[1][9] = 40;
 
-   G->arc[3][4] = 2;
-   G->arc[3][6] = 3;
+   G->arc[2][3] = 70;
+   G->arc[2][9] = 10;
 
-   G->arc[4][5] = 3;
-   G->arc[4][6] = 6;
-   G->arc[4][7] = 9;
+   G->arc[3][7] = 90;
+   G->arc[3][4] = 45;
 
-   G->arc[5][7] = 5;
+   G->arc[4][5] = 45;
 
-   G->arc[6][7] = 2;
-   G->arc[6][8] = 7;
+   G->arc[5][7] = 30;
+   G->arc[5][6] = 20;
+   G->arc[5][8] = 50;
 
-   G->arc[7][8] = 4; //赋值
+   G->arc[7][8] = 30; //赋值
+
+   G->arc[9][10] = 50;
+
+   G->arc[10][11] = 80;
+   G->arc[10][12] = 80;
+   G->arc[10][13] = 100;
+   G->arc[10][14] = 100;
+
+   G->arc[11][14] = 80;
+
+   G->arc[12][13] = 80;
+
+   G->arc[13][14] = 100;
 
    for(int i = 0; i< G->vertex_num; i++)
    {
@@ -84,6 +116,16 @@ int choose(int distance[],int found[], int vertex_num)
       }
    }
    return minPos;
+}
+
+
+void printPath(int path[], int destination) {
+   if (path[destination] == -1) {
+      printf("%s", campus[destination]);
+      return;
+   }
+   printPath(path, path[destination]);
+   printf(" -> %s", campus[destination]);
 }
 
 void dijkstra(Mat_Graph G, int begin) // Dijkstra算法
@@ -119,45 +161,15 @@ void dijkstra(Mat_Graph G, int begin) // Dijkstra算法
          }
       }
    }
-   char const *campus[] = {
-         "西大门",
-         "厨房",
-         "图书馆",
-         "操场",
-         "教学楼A",
-         "教学楼B",
-         "教学楼C",
-         "宿舍7",
-         "宿舍8",
-   };
+   printf("从 %s 出发到各地点最短路径:\n", campus[begin]);
+   for(int i = 1; i < G.vertex_num; i++) {
+      // printf("%s ",campus[i]);
+      printf("%s -> %s: ", campus[begin], campus[i]);
 
-
-   for(int i = 1; i < G.vertex_num; i++)
-   {
-      printf("西大门 -> %s : %d\n",campus[i],distance[i]);
-
-      int j = i;
-      printf(" 路径是：西大门 ->");
-      int total = sizeof(campus) / sizeof(campus[0]);  // 计算数组长度
-      const char *temp;  // 临时指针
-
-      // 倒序交换指针
-      for (int x = 0; x < total / 2; x++) {
-         temp = campus[x];
-         campus[x] = campus[total - 1 - x];
-         campus[total - 1 - x] = temp;
-      }
-
-      while (path[j] != -1) {
-         printf("%s ->", campus[j]);
-         j = path[j];
-      }
-      for (int x = 0; x < total / 2; x++) {
-         temp = campus[x];
-         campus[x] = campus[total - 1 - x];
-         campus[total - 1 - x] = temp;
-      }
-      printf("%s\n",campus[i]);
+         printf("距离: %d\n", distance[i]);
+         printf("  路径: 西大门 -> ");
+         printPath(path, i);
+      printf("  \n");
    }
 }
 
