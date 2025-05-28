@@ -4,13 +4,15 @@ import pygame
 from pygame.constants import * #可以导入pygame.constants的所有方法
 
 class CommonPlane(pygame.sprite.Sprite):
+   bullets = pygame.sprite.Group() # 存放所有飞机子弹的精灵组
+
    def __init__(self,screen): 
       pygame.sprite.Sprite.__init__(self) #精灵的初始化方法，必须调用
 
-      self.com_plane = pygame.image.load("./picture/player.png") #载入初号机图片46*57
+      self.com_plane = pygame.image.load("./picture/hero1.png") #载入初号机图片99*124
       
       self.rect = self.com_plane.get_rect() #rect就是矩形，该方法是根据图片的大小创建一个矩形
-      self.rect.topleft = [210,600]#设置矩形的坐标位置，topleft是精灵类的一个属性
+      self.rect.topleft = [190,530]#设置矩形的坐标位置，topleft是精灵类的一个属性
 
       
       self.speed = 5
@@ -41,6 +43,9 @@ class CommonPlane(pygame.sprite.Sprite):
          if key_pressed[K_SPACE]: 
             bullet = Bullet(self.screen,self.rect.left,self.rect.top) #将矩形的左上角坐标带入 
             self.bullets.add(bullet) #这里是为了应对精灵类的add方法，将子弹添加到精灵族中
+     
+            CommonPlane.bullets.add(bullet) #将子弹添加到精灵组中
+
    def update(self): #方便调用
       self.key_control()
       self.display()
@@ -50,7 +55,11 @@ class CommonPlane(pygame.sprite.Sprite):
 
       self.bullets.update() #update是Group的一个方法，用于更新每个子弹的坐标
       self.bullets.draw(self.screen) #draw是Group的一个方法，用于将每个子弹绘制到窗口中,因此就不再需要子弹类中的display方法
-         
+   
+   @classmethod # 清空子弹
+   def clear_bullets(cls):
+      cls.bullets.empty()
+
 class Bullet(pygame.sprite.Sprite):
    def __init__(self,screen,x,y):
       pygame.sprite.Sprite.__init__(self)
@@ -58,7 +67,7 @@ class Bullet(pygame.sprite.Sprite):
       self.image = pygame.image.load("./picture/zidan2.png") #加载子弹图片  
       
       self.rect = self.image.get_rect() #使图像成为一个矩形
-      self.rect.topleft = [x+21,y-12]
+      self.rect.topleft = [x+48,y-5]
       
       self.screen = screen  
 

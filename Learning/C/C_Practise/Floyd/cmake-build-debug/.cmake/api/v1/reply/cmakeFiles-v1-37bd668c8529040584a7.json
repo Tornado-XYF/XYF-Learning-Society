@@ -459,8 +459,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "D:/Learning/Learning/C/C_Practise/dijkstra/cmake-build-debug",
-		"source" : "D:/Learning/Learning/C/C_Practise/dijkstra"
+		"build" : "D:/Learning/Learning/C/C_Practise/Floyd/cmake-build-debug",
+		"source" : "D:/Learning/Learning/C/C_Practise/Floyd"
 	},
 	"version" : 
 	{
