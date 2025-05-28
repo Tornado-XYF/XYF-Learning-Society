@@ -45,7 +45,7 @@ class enemyPlane1(pygame.sprite.Sprite):
       
    @classmethod # 清空子弹
    def clear_bullets(cls):
-      cls.bullets.empty()
+      cls.enemy_bullets.empty()
 
    def auto_move(self):#敌机向下移动
       
