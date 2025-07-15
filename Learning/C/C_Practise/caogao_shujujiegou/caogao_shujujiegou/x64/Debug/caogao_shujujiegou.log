@@ -1,0 +1,8 @@
+﻿  源.c
+D:\Learning\Learning\C\C_Practise\caogao_shujujiegou\caogao_shujujiegou\源.c(53,9): warning C4013: “insertHead”未定义；假设外部返回 int
+D:\Learning\Learning\C\C_Practise\caogao_shujujiegou\caogao_shujujiegou\源.c(53,7): warning C4047: “=”:“Node *”与“int”的间接级别不同
+D:\Learning\Learning\C\C_Practise\caogao_shujujiegou\caogao_shujujiegou\源.c(54,7): warning C4047: “=”:“Node *”与“int”的间接级别不同
+D:\Learning\Learning\C\C_Practise\caogao_shujujiegou\caogao_shujujiegou\源.c(55,7): warning C4047: “=”:“Node *”与“int”的间接级别不同
+D:\Learning\Learning\C\C_Practise\caogao_shujujiegou\caogao_shujujiegou\源.c(47,1): warning C4716: “listNode”: 必须返回一个值
+源.obj : error LNK2019: 无法解析的外部符号 insertHead，函数 main 中引用了该符号
+D:\Learning\Learning\C\C_Practise\caogao_shujujiegou\x64\Debug\caogao_shujujiegou.exe : fatal error LNK1120: 1 个无法解析的外部命令

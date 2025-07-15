@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Learning\\Learning\\C\\C_Practise\\caogao\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5B607CCB-F359-44BB-ABD7-7C3558CFAEA1}|caogao\\caogao.vcxproj|D:\\Learning\\Learning\\C\\C_Practise\\caogao\\caogao\\caogao.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5B607CCB-F359-44BB-ABD7-7C3558CFAEA1}|caogao\\caogao.vcxproj|solutionrelative:caogao\\caogao.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "caogao.cpp",
+              "DocumentMoniker": "D:\\Learning\\Learning\\C\\C_Practise\\caogao\\caogao\\caogao.cpp",
+              "RelativeDocumentMoniker": "caogao\\caogao.cpp",
+              "ToolTip": "D:\\Learning\\Learning\\C\\C_Practise\\caogao\\caogao\\caogao.cpp",
+              "RelativeToolTip": "caogao\\caogao.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-08T05:37:22.545Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
