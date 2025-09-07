@@ -48,7 +48,25 @@ HTML元素可以设置属性，属性可以在元素中添加附加信息，一�
 
 ### 9.如何理解base标签
 
-==存疑==
+base标签是用来定义所有链接默认的URL的，也就是链接目标地址，base中所定义的属性也会一同适用
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>菜鸟教程(runoob.com)</title> 
+<base href="地址1号/images/" target="_blank">
+</head>
+
+<body>
+<img src="logo.png"> - 注意这里我们设置了图片的相对地址。能正常显示是因为我们在 head 部分设置了 base 标签，该标签指定了页面上所有链接的默认 URL，所以该图片的访问地址为 "地址1号/images/logo.png"
+<br><br>
+<a href="地址1号">网址</a> - 注意这个链接会在新窗口打开，即便它没有 target="_blank" 属性。因为在 base 标签里我们已经设置了 target 属性的值为 "_blank"。
+
+</body>
+</html>
+```
 
 ### 10.CSS中“text align：”和“float:”的区别是什么？
 
@@ -85,4 +103,152 @@ id 属性用于指向样式表中的特定样式声明。JavaScript 也可使用
 id 的语法是：写一个井号 (#)，后跟一个 id 名称。然后，在花括号 {} 中定义 CSS 属性。
 详情请跳转至<https://www.w3school.com.cn/html/html_id.asp> 该网页可以解释的更加清楚。
 
-## CSS
+### HTML链接
+
+`<a href="https://www.bilibili.com" target = "_blank">B站</a>`
+`target`属性可以定义链接的打开方式
+`_blank`：在新窗口打开链接
+`_self`：在当前窗口打开链接(默认)
+`_parent`：在父窗口打开链接
+`_top`：在顶部窗口打开链接
+
+#### rel：定义链接与目标页面的关系
+
+nofollow: 表示搜索引擎不应跟踪该链接，常用于外部链接。
+
+noopener 和 noreferrer: 防止在新标签中打开链接时的安全问题，尤其是使用 target="_blank" 时。
+
+noopener: 防止新的浏览上下文（页面）访问window.opener属性和open方法。
+noreferrer: 不发送referer header（即不告诉目标网站你从哪里来的）。
+noopener noreferrer: 同时使用noopener和noreferrer。例子: `<a href="https://www.example.com" rel="noopener noreferrer">安全链接</a>`
+
+#### download：下载链接并且可以指定文件名称
+
+`<a herf="下载网址" download="文件名称">下载文件</a>`
+
+#### title：定义链接的额外信息，当鼠标悬停在链接上时显示的工具提示
+
+`<a href="https://www.example.com" title="访问 Example 网站">访问 Example</a>`
+
+#### id:用于链接锚点，通常在同一页面中跳转到某个特定位置
+
+```html
+<!-- 链接到页面中的某个部分 -->
+<a href="#section1">跳转到第1部分</a>
+<div id="section1">这是第1部分</div>
+```
+
+#### 空链接
+
+![alt text](image.png)
+
+### HTML图像
+
+`<img src="相对路径或者绝对路径" width="258" height"39">`
+
+`src`属性的值就是图像的URL地址
+`alt`属性：当图片加载失败时显示的替代文本。
+
+#### `<map>`创建图像地图--使图像中的各个区域都有链接
+
+`<area>`定义图像地图中的可点击区域和链接
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+
+<p>点击太阳或其他行星，注意变化：</p>
+
+<img src="planets.gif" width="145" height="126" alt="Planets" usemap="#planetmap">
+
+<map name="planetmap">
+  <area shape="rect" coords="0,0,82,126" alt="Sun" href="sun.htm">
+  <area shape="circle" coords="90,58,3" alt="Mercury" href="mercur.htm">
+  <area shape="circle" coords="124,58,8" alt="Venus" href="venus.htm">
+</map>
+
+</body>
+</html>
+```
+
+注意上面map标签的使用方法
+
+`coords`属性值:
+
+![alt text](image-5.png)
+
+### HTML水平线
+
+`<hr>`标签在HTML页面中创建水平线，hr元素可用于分割内容。
+`<hr>`可用于分隔内容
+
+### HTML注释
+
+`<!-- 注释内容 -->`
+md中也可以实现,详情看代码
+<!-- 这是一个注释 -->
+
+### HTML折行标签
+
+`<br>`标签在HTML页面中创建换行符。实现文本换行的效果
+
+### 文本格式化
+
+```html
+<b>加粗</b>
+<br/>
+<strong>加粗</strong>
+<br/>
+<big>放大文本字体</big>
+<br/>
+<i>倾斜文本字体</i>
+<br/>
+<small>缩小文本字体</small>
+<br/>
+这个文本包含<sub>下标</sub>
+<br/>
+这个文本包含<sup>上标</sup>
+```
+
+还有很多形式......
+
+### `<meta>`标签
+
+meta标签描述了一些基本的元数据。
+
+`<meta>` 标签提供了元数据.元数据也不显示在页面上，但会被浏览器解析。
+
+META 元素通常用于指定网页的描述，关键词，文件的最后修改时间，作者，和其他元数据。
+
+元数据可以使用于浏览器（如何显示内容或重新加载页面），搜索引擎（关键词），或其他Web服务。
+
+`<meta>` 一般放置于 `<head>` 区域
+
+```html
+<meta name="description" content="免费 Web & 编程 教程"> <!-- 描述网页内容 -->
+<meta name="author" content="Runoob"><!-- 描述网页作者 -->
+
+```
+
+### 表格和列表
+
+由`table`标签来定义表格
+
+### 区块
+
+块级元素和内联元素：
+块级元素如`<div>`,块级元素的内容会在新一行开始显示。而
+内联元素如`<span>`，内联元素的内容不会在新一行开始显示。
+
+### `<div>`元素
+
+该元素没有特定的含义，与css使用时，可对`<div>`区块里面的内容进行样式设置
+
+### `<span>`元素
+
+该元素可作为文本容器，可以与css一起对文本进行样式设置
