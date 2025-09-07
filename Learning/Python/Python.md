@@ -3033,7 +3033,7 @@ div(3,2)
 
 ### 位置参数
 
-```.
+```.python
 def myfunc(s,vt,o):
       return"".join((o,vt,s))
 myfunc("Fish","C","Py")
@@ -3045,7 +3045,7 @@ myfunc("Fish","C","Py")
 输出
 
 ```.
-PyFishC
+PyCFish
 ```
 
 ### 关键字参数
@@ -3178,7 +3178,7 @@ myfunc(a=1,b=2,c=3)
 
 例如：
 
-```.
+```.py
 def myfunc(a,*args,**kwargs):
       print(a,args,kwargs)
 myfunc(1,2,3,4,5,a=6,b=7)
@@ -3369,7 +3369,7 @@ print(myfunc()) #调用被装饰的函数
 
 例如：
 
-```.
+```.py
 import time
 def logger(msg):
    def time_master(func):
@@ -3845,7 +3845,7 @@ xyf
 `except`语句的作用是捕获异常，`except`语句的参数是异常的类型。
 例如：
 
-```.
+```py
 try: #尝试执行这段代码
    1/0 #这里会抛出一个异常，因为0不能作为除数
 except ZeroDivisionError: #捕获异常，ZeroDivisionError是异常的类型
