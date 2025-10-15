@@ -1,98 +1,19 @@
-﻿
-
-
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <malloc.h>
+
+#define MAXSIZE 100
 
 typedef int ElemType;
 
-typedef struct node 
+typedef struct
 {
-	ElemType data;
-	struct node* next; //next存储了下一个node数据的地址
-}Node;
+ElemType *data[MAXSIZE];
+int length;
+}SeqList;
 
-Node* initList()
+void init(SeqList *L)
 {
-	Node* head = (Node*)malloc(sizeof(Node)); //申请内存空间，用来存储顺序表的地址
-	head->next = NULL; //初始化头结点的指针域为null
-	head->data = 0; //初始化头结点的数据域为0
-	return head;
-}
-
-int insertHead(Node* L, ElemType e) //L是头结点，e是要插入的数据
-{
-	Node* p = (Node*)malloc(sizeof(Node)); //申请内存空间，用来 存储新结点
-	p->data = e; //将新结点的数据域赋值为e
-	p->next = L->next; //将新结点的指针域赋值为头结点的指针域，也就是原来的第一个结点
-	L->next = p; //将头结点的指针域赋值为新结点的地址，也就是新结点成为了第一个结点
-	return 0;
-}
-
-void listNode(Node* L)
-{
-	Node* p = L->next;
-	while (p != NULL)
-	{
-		printf("%d ", p->data);
-		p = p->next;
-	}
-	printf("\n");
-}
-Node* get_tail(Node* L) //获取尾结点
-{
-	Node* p = L;
-	while (p->next != NULL)
-	{
-		p = p->next;
-	}
-	return p;
-}
-
-Node* insertTail(Node* tail, ElemType e)
-{
-	Node* p = (Node*)malloc(sizeof(Node));
-	p->data = e;
-	tail->next = p;
-	p->next = NULL;
-	return p;
-}
-
-int insertNode(Node* L, int pos, ElemType e)
-{  //用p存储头结点的地址
-	Node* p = L;
-	int i = 0;
-	//找到要插入位置的前一个结点
-	while (i < pos - 1)
-	{
-		p = p->next;
-		i++;
-		if (p == NULL)
-		{
-			return 0;
-		}
-	}
-	//初始化要插入的新节点
-	Node* q = (Node*)malloc(sizeof(Node));
-	q->data = e;
-	q->next = p->next; // 将前一个结点的指针域 赋值给 新结点的指针域
-	p->next = q; // 再将 新结点的地址 赋值给 前一个结点的指针域
-	return 1;
-}
-
-int main()
-{
-	Node* list = initList();
-	Node* tail = get_tail(list);
-	tail = insertTail(tail, 10);
-	tail = insertTail(tail, 20);
-	tail = insertTail(tail, 30);
-	listNode(list);
-	insertNode(list, 2, 15);
-	listNode(list);
-	return 0;
-}
-
+L->length = 0;}
 
 
 
