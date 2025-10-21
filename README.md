@@ -6,7 +6,7 @@
 
 ## Java（基础掌握，但是也基本忘记）
 
-## HTML（forgettable）
+## HTML+CSS（forgettable）js
 
 ## Python(完结)
 
@@ -16,27 +16,23 @@
 
 ## 数据结构和算法
 
-## c++部分算法--0
+## c++部分算法--0.1
 
-## fastAPI--0
+## fastAPI--0.5
 
-## pyQT6--0
+## 实战穿插--0
 
-## 实战穿插
+## shell
 
-## JavaWeb -- 0
+## Linux
 
 ## 制作我的个人网页
 
-## 数据库--0
-
-## SSM--0
-
-## 微服务--0
-
-## 云原生
+## MySql--0
 
 ## GO
+
+## 云原生
 
 ## C#
 
