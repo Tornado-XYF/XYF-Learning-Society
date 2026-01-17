@@ -624,7 +624,7 @@ void reOrderList(Node *head)
 
 ### 单向循环链表
 
-当链表遍历时，判别当前指针p是否指向表尾结点的终止条件不同，在单链表中，判别条件为 `p!=NULL`或`p->next != NULL`，而循环链表的判别条件为 `p!=L`或`p->next!=L`
+当链表遍历时，判别当前指针p是否指向表尾结点的终止条件不同，在单链表中，判别条件为 `p!=NULL`或`p->next != NULL`，而循环链表的判别条件为 `p!= L`或`p->next!=L`
 
 #### 854哈工大2023独立命题-判断链表是否有环
 
@@ -1599,7 +1599,7 @@ int main() {
 
 例：
 
-```.
+```c
 #include <stdio.h>
 
 void SelectSort(int k[], int n)
@@ -1608,22 +1608,23 @@ int i, j, min, temp;
 for (i = 0; i < n - 1 ; i++)
 {
 min = i;
-for (j = i + 1; j < n; j++)
-{
-if (k[j] < k[min])
-{
-min = j;
+    for (j = i + 1; j < n; j++)
+    {
+        if (k[j] < k[min])
+         {
+            min = j;
+         }
+    }
+
+    if (min != i) 
+    {
+    temp = k[min];
+    k[min] = k[i];
+    k[i] = temp;
+    }
 }
 }
 
-if (min != i) 
-{
-temp = k[min];
-k[min] = k[i];
-k[i] = temp;
-}
-}
-}
 int main() {
 int i, a[10] = { 5,2,6,0,3,9,1,7,4,8 };
 
@@ -1650,7 +1651,7 @@ return 0;
 
 例：
 
-```.
+```c
 #include <stdio.h>
 
 void InsertSort(int k[], int n)
@@ -1658,15 +1659,15 @@ void InsertSort(int k[], int n)
 int i, j, temp;
 for (i = 1; i < n; i++)
 {
-if (k[i] < k[i - 1])
-{
-temp = k[i]; 
-for (j = i - 1; j >= 0 && k[j] > temp; j--)
-{
-k[j + 1] = k[j];
-}
-k[j + 1] = temp;
-}
+    if (k[i - 1] > k[i])
+    {
+    temp = k[i]; 
+    for (j = i - 1; j >= 0 && k[j] > temp; j--)
+    {
+        k[j + 1] = k[j];
+    }
+    k[j] = temp;
+    }
 }
 }
 
@@ -1689,7 +1690,7 @@ return 0;
 
 例：
 
-```.
+```c
 #include <stdio.h>
 void ShellSort(int k[], int n)
 {
@@ -1697,15 +1698,15 @@ int i, j, gap;
 int temp;
 for (gap = n / 2; gap > 0; gap /= 2)
 {
-for (i = gap; i < n; i++)
-{
-temp = k[i];
-for (j = i - gap; j >= 0 && k[j] > temp; j -= gap)
-{
-k[j + gap] = k[j];
-}
-k[j + gap] = temp;
-}
+    for (i = gap; i < n; i++)
+    {
+        temp = k[i];
+        for (j = i - gap; j >= 0 && k[j] > temp; j -= gap)
+        {
+            k[j + gap] = k[j];
+        }
+        k[j + gap] = temp;
+    }
 }
 }
 int main() {
@@ -1724,7 +1725,12 @@ return 0;
 
 堆排序（Heapsort）是指利用堆这种数据结构所设计的一种排序算法。堆积是一个近似完全二叉树的结构，并同时满足堆积的性质：即子结点的键值或索引总是小于（或者大于）它的父节点。
 
-例：
+例:
+
+```c
+#include <stdio.h>
+
+```
 
 ## 查找
 
@@ -1734,7 +1740,7 @@ return 0;
 
 例：
 
-```.
+```c
 #include <stdio.h>
 int BinarySearch(int k[], int n, int key)
 {
@@ -1795,6 +1801,8 @@ typedef struct
    int vertex_num;
    int edge_num;
 }Mat_Graph;
+
+
 
 void createGraph(Mat_Graph* G)
 {
@@ -2679,3 +2687,31 @@ int main(void) {
 
 ## 算法设计策略
 
+## 串
+
+### KMP算法
+
+求next数组:
+
+```c
+next[1] = 0;
+for(int j =2; j <= T.length; j++)
+{
+    if(T.ch[next[j-1]] == T.ch[j-1])
+        next[j] = next[j-1] + 1;
+    else
+        next[j] = 0;
+}
+```
+求nextval:
+
+```c
+nextval[1] = 0;
+for(int j =2; j <= T.length; j++)
+{
+    if(T.ch[next[j]] == T.ch[j])
+        nextval[j] = nextval[next[j]];
+    else
+        nextval[j] = next[j];
+}
+```
