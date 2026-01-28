@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>用户列表数据</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f6f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+        .no-data {
+            text-align: center;
+            color: #777;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id = "app" class="container">
+        <h1>用户列表数据</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>用户名</th>
+                    <th>密码</th>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>更新时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr v-for="user in userList" :key="user.id">
+                            <td> {{user.id}}</td>
+                            <td> {{user.username}}</td>
+                            <td> {{user.password}}</td>
+                            <td> {{user.name}}</td>
+                            <td> {{user.age}}</td>
+                            <td> {{user.updateTime}}</td>
+                    </tr>
+
+
+               
+                <tr>
+                    <td colspan="6" class="no-data">暂无用户数据</td>
+                </tr>
+             
+            </tbody>
+        </table>
+    </div>
+
+    <!--引入axios-->
+    <script src="js/axios.js"></script>
+    <script type = "module">
+        import { createApp } from './js/vue.esm-browser.js'
+        createApp({
+            data() {
+                return {
+                    userList: []
+                }
+            },
+            methods:{
+                async search(){
+                    const result = await axios.get('/list');
+                    this.userList = result.data;
+                    }
+            },
+            mounted(){
+                this.search();
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
