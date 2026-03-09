@@ -115,3 +115,11 @@ gedit /etc/pam.d/gdm-password
 在这一行前面添加注释符号#
 `#auth required pam_succeed_if.so user != root quiet_success`
 4. 关闭虚拟机重启，登录root用户
+
+## cat 命令
+
+1. cat 命令用于显示文件的内容。
+2. cat file.txt 命令用于显示名为 file.txt 的文件的内容。
+3. cat file1.txt file2.txt 命令用于显示多个文件的内容（按顺序）。
+4. cat > output.txt 命令用于将标准输入重定向到 output.txt 文件中（覆盖原有内容）。
+5. cat >> output.txt 命令用于将标准输入重定向到 output.txt 文件中（追加到原有内容）
